@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Noto";
+  src: url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap");
+}
+
+.post-item {
+  max-width: 800px;
+  background-color: gray;
+  border-radius: 6px;
+  margin: 20px auto;
+  font-family: "Noto";
+  font-size: 20px;
+}
+
+.post-item > p {
+  padding: 0 10px;
+}
