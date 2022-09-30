@@ -1,6 +1,7 @@
 import { PostItem } from "./components/PostItem/PostItem";
 import { loadPosts } from "./state/actions";
 import { state } from "./state";
+import "./style.css";
 
 const root = document.getElementById("app");
 
@@ -10,17 +11,18 @@ loadPosts();
 
 function postsList() {
   const { posts, postsLoading } = state.getState();
+  root.innerHTML = "";
 
   if (postsLoading) {
     root.innerHTML = "Loading...";
     return;
   }
 
-  const postsList = posts.map((post) => {
-    return PostItem({ post: post });
+  posts.forEach((post) => {
+    root.appendChild(PostItem({ post: post }));
   });
 
-  root.innerHTML = postsList.join("");
+  //   root.innerHTML = postsList.join("");
 }
 
 function render() {

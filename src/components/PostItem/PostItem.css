@@ -1,17 +1,23 @@
-@font-face {
-  font-family: "Noto";
-  src: url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap");
-}
-
 .post-item {
-  max-width: 800px;
-  background-color: gray;
-  border-radius: 6px;
-  margin: 20px auto;
-  font-family: "Noto";
+  width: 100%;
+  /* border-radius: 6px; */
+  border: 0.3px solid rgb(255, 255, 255);
+  margin: 0px auto;
   font-size: 20px;
+}
+.post-item:hover {
+  background-color: rgb(226, 226, 226);
 }
 
 .post-item > p {
   padding: 0 10px;
+}
+
+.post-title {
+  font-weight: 600;
+}
+
+.post-author {
+  font-weight: 200;
+  text-align: center;
 }
