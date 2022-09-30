@@ -1,32 +1,27 @@
-import { PostItem } from "./components/PostItem/PostItem";
-import { loadPosts } from "./state/actions";
-import { state } from "./state";
 import "./style.css";
 
-const root = document.getElementById("app");
+import { PostItem } from "./components/PostItem/PostItem";
+import { PostList } from "./components/PostList/PostList";
+import { Renderer } from "./libs/renderer/Renderer";
+import { loadPosts } from "./state/actions";
+import { state } from "./state";
 
-state.subscribe(render);
-
+// Load data
 loadPosts();
 
-function postsList() {
-  const { posts, postsLoading } = state.getState();
-  root.innerHTML = "";
-
-  if (postsLoading) {
-    root.innerHTML = "Loading...";
-    return;
-  }
-
-  posts.forEach((post) => {
-    root.appendChild(PostItem({ post: post }));
-  });
-
-  //   root.innerHTML = postsList.join("");
-}
+// Render
+const dom = new Renderer();
 
 function render() {
-  postsList();
+  const { posts, postsLoading } = state.getState();
+
+  dom.render(
+    document.getElementById("app"),
+    PostList({
+      postItems: posts.map((post) => PostItem({ post })),
+      loading: postsLoading,
+    })
+  );
 }
 
-render();
+state.subscribe(render);
