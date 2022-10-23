@@ -1,39 +1,27 @@
-import { PostEntity } from "../../entities/PostEntity";
 import "./PostItem.css";
 
+import { PostEntity } from "../../entities/PostEntity";
+import { AuthorEntity } from "../../entities/AuthorEntity";
+import { createElement } from "../../libs/renderer/utils/createElement";
 type PostItemProps = {
   post: PostEntity;
 };
 
-function PostItem(props: PostItemProps) {
-  const { post } = props;
+type AuthorProps = {
+  author: AuthorEntity;
+};
 
-  const postItem = document.createElement("div");
-  postItem.className = "post-item";
+function PostItem(postProps: PostItemProps, authorProps: AuthorProps) {
+  const { post } = postProps;
+  const { author } = authorProps;
 
-  const postTitle = document.createElement("p");
-  postTitle.className = "post-title";
-  postTitle.innerText = `${post.title}`;
-  postItem.appendChild(postTitle);
-
-  const postBody = document.createElement("p");
-  postBody.className = "post-body";
-  postBody.innerText = `${post.body}`;
-  postItem.appendChild(postBody);
-
-  const postAuhor = document.createElement("p");
-  postAuhor.className = "post-author";
-  postAuhor.innerText = `${post.id}`;
-  postItem.appendChild(postAuhor);
-
-  return postItem;
-
-  // return `
-  //   <div class="post-item">
-  //     <p class="post-title">${post.title}</p>
-  //     <p class="post-author">${post.userId}</p>
-  //   </div>
-  // `;
+  return createElement("div", { className: "post-item" }, [
+    createElement("p", { className: "post-title" }, [post.title]),
+    createElement("p", { className: "" }, [post.body]),
+    createElement("p", { className: "post-author" }, [
+      post.userId.toString() === author.id.toString() ? author.name : null,
+    ]),
+  ]);
 }
 
 export { PostItem };

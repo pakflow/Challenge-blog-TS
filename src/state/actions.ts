@@ -7,4 +7,9 @@ const loadPosts = async () => {
   state.setState({ posts, postsLoading: false });
 };
 
-export { loadPosts };
+const loadAuthors = async () => {
+  const authors = await PostService.getAuthorsList();
+  state.setState(authors);
+};
+
+export { loadPosts, loadAuthors };

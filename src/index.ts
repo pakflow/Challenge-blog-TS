@@ -1,26 +1,23 @@
 import "./style.css";
 
-import { PostItem } from "./components/PostItem/PostItem";
 import { PostList } from "./components/PostList/PostList";
 import { Renderer } from "./libs/renderer/Renderer";
-import { loadPosts } from "./state/actions";
+import { loadAuthors, loadPosts } from "./state/actions";
 import { state } from "./state";
+import { PostItem } from "./components/PostItem/PostItem";
 
 // Load data
 loadPosts();
+loadAuthors();
 
 // Render
 const dom = new Renderer();
+const root = document.getElementById("app");
 
 function render() {
-  const { posts, postsLoading } = state.getState();
-
   dom.render(
-    document.getElementById("app"),
-    PostList({
-      postItems: posts.map((post) => PostItem({ post })),
-      loading: postsLoading,
-    })
+    PostList({ loading: false, postItems: state.getState().posts }),
+    root
   );
 }
 
