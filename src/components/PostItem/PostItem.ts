@@ -1,26 +1,25 @@
 import "./PostItem.css";
-
-import { PostEntity } from "../../entities/PostEntity";
-import { AuthorEntity } from "../../entities/AuthorEntity";
 import { createElement } from "../../libs/renderer/utils/createElement";
+import { FullPost } from "../../state";
+import { Router } from "../../router/components/Router";
+import { router } from "../..";
 type PostItemProps = {
-  post: PostEntity;
+  post: FullPost;
 };
 
-type AuthorProps = {
-  author: AuthorEntity;
-};
-
-function PostItem(postProps: PostItemProps, authorProps: AuthorProps) {
-  const { post } = postProps;
-  const { author } = authorProps;
+function PostItem(props: PostItemProps) {
+  const { post } = props;
 
   return createElement("div", { className: "post-item" }, [
+    // createElement("i", {className: "post-icon", })
+    createElement("p", { className: "post-author" }, [post.author.name]),
     createElement("p", { className: "post-title" }, [post.title]),
     createElement("p", { className: "" }, [post.body]),
-    createElement("p", { className: "post-author" }, [
-      post.userId.toString() === author.id.toString() ? author.name : null,
-    ]),
+    createElement(
+      "a",
+      { onclick: () => router.locateTo(`/posts/${post.id}`) },
+      ["Read post"]
+    ),
   ]);
 }
 

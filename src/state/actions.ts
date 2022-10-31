@@ -1,15 +1,25 @@
 import { PostService } from "../services/postService/PostService";
-import { state } from ".";
+import { FullPost, state } from ".";
 
 const loadPosts = async () => {
   state.setState({ postsLoading: true });
+
   const posts = await PostService.getPostsList();
-  state.setState({ posts, postsLoading: false });
-};
-
-const loadAuthors = async () => {
   const authors = await PostService.getAuthorsList();
-  state.setState(authors);
+  const comments = await PostService.getCommentList();
+  const fullPosts: FullPost[] = [];
+
+  for (let i = 0; i < posts.length; i++) {
+    const post = posts[i];
+    const postAuthor = authors.find((item) => item.id === post.userId);
+    const postComments = comments.filter(
+      (comment) => comment.postId === post.id
+    );
+    const fullPost = { ...post, author: postAuthor, comments: postComments };
+    fullPosts.push(fullPost);
+  }
+
+  state.setState({ postsLoading: false, posts: fullPosts });
 };
 
-export { loadPosts, loadAuthors };
+export { loadPosts };

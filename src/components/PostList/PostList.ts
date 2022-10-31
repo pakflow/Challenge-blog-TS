@@ -1,30 +1,20 @@
-import { PostEntity } from "../../entities/PostEntity";
 import { PostItem } from "../PostItem/PostItem";
-import { createElement } from "../../libs/renderer/utils/createElement";
-import { state } from "../../state";
-import { AuthorEntity } from "../../entities/AuthorEntity";
+import { createElement, vNode } from "../../libs/renderer/utils/createElement";
+import { FullPost, state } from "../../state";
 
 interface PostListProps {
-  postItems: PostEntity[];
+  posts: FullPost[];
   loading: boolean;
 }
 
-interface AuthorListProps {
-  authors: AuthorEntity[];
-}
-
-function PostList(postProps: PostListProps, authorProps: AuthorListProps) {
-  const { postItems, loading } = postProps;
-  const { authors } = authorProps;
+function PostList(props: PostListProps) {
+  const { posts, loading } = props;
 
   return createElement(
     "div",
     undefined,
-    loading
-      ? ["Loading..."]
-      : postItems.map((item) => PostItem({ post: item }, { author: item }))
+    loading ? ["Loading..."] : posts.map((post) => PostItem({ post: post }))
   );
-  //
 }
 
 export { PostList };

@@ -15,6 +15,7 @@ class Renderer {
   }
 
   sync(vDom: vNodeTagElement, realDom: HTMLElement) {
+    // debugger;
     for (const [key, value] of Object.entries(realDom)) {
       (realDom as any)[key] = value;
     }
@@ -57,13 +58,29 @@ class Renderer {
       if (
         vNode !== undefined &&
         realNode !== undefined &&
-        typeof vNode === "object" &&
-        realNode instanceof HTMLElement &&
-        vNode.type !== realNode.tagName.toLowerCase()
+        ((typeof vNode === "object" &&
+          realNode instanceof HTMLElement &&
+          vNode.type !== realNode.tagName) ||
+          (typeof vNode === "string" && realNode instanceof HTMLElement) ||
+          (typeof vNode === "object" && realNode instanceof Text))
       ) {
-        const newDomEl = createDomElement(vNode) as HTMLElement;
-        this.sync(vNode, newDomEl);
-        realNode.replaceChild(newDomEl, realNode);
+        if (typeof vNode === "object" && realNode instanceof HTMLElement) {
+          const newDomEl = createDomElement(vNode) as HTMLElement;
+          this.sync(vNode, newDomEl);
+          realDom.replaceChild(newDomEl, realNode);
+        } else if (
+          typeof vNode === "string" &&
+          realNode instanceof HTMLElement
+        ) {
+          const newDomEl = createDomElement(vNode) as Text;
+          realDom.replaceChild(newDomEl, realNode);
+        } else if (typeof vNode === "object" && realNode instanceof Text) {
+          const newDomEl = createDomElement(vNode) as HTMLElement;
+          this.sync(vNode, newDomEl);
+          // realNode.replaceChild(newDomEl, realNode);
+          realNode.remove();
+          realDom.append(newDomEl);
+        }
       }
       // Remove
       if (vNode === undefined && realNode !== undefined) {
