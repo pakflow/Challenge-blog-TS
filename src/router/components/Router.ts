@@ -3,7 +3,7 @@ import { BrowserRouter } from "../BrowserRouter";
 
 type Route = {
   path: RegExp;
-  element: vNodeTagElement;
+  element: (params: string[]) => vNodeTagElement;
 };
 
 type RouterProps = {
@@ -16,9 +16,9 @@ function Router(props: RouterProps) {
 
   for (let i = 0; i < routes.length; i++) {
     const route = routes[i];
-
-    if (router.match(route.path)) {
-      return route.element;
+    const params = router.match(route.path);
+    if (params) {
+      return route.element(params);
     }
   }
 }

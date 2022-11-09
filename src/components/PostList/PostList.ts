@@ -1,8 +1,8 @@
 import { PostItem } from "../PostItem/PostItem";
-import { createElement, vNode } from "../../libs/renderer/utils/createElement";
-import { FullPost, state } from "../../state";
+import { createElement } from "../../libs/renderer/utils/createElement";
+import { FullPost } from "../../state";
 
-interface PostListProps {
+export interface PostListProps {
   posts: FullPost[];
   loading: boolean;
 }

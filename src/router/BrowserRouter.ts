@@ -8,6 +8,7 @@ class BrowserRouter {
 
   locateTo(url: string) {
     this.url = url;
+    history.pushState(null, "", url);
     this.notifySubscribers();
   }
 
@@ -15,7 +16,7 @@ class BrowserRouter {
     return this.url;
   }
 
-  match(urlPattern: RegExp) {
+  match(urlPattern: RegExp): null | string[] {
     const result = this.url.match(urlPattern);
     if (result === null) {
       return null;
