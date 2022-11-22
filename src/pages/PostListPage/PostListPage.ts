@@ -2,16 +2,11 @@ import "./PostListPage.css";
 import { PostList, PostListProps } from "../../components/PostList/PostList";
 import { createElement } from "../../libs/renderer/utils/createElement";
 import { state } from "../../state";
+import { paginate } from "../../libs/renderer/utils/paginate";
+import { Pagination } from "../../components/Pagination/Pagination";
 
 function PostListPage(props: PostListProps) {
   const { posts, loading } = props;
-  const limit = 10;
-  const pageCount = Math.ceil(posts.length / limit);
-  const arrOfNumsPage = [];
-  for (let i = 1; i <= pageCount; i++) {
-    arrOfNumsPage.push(i);
-  }
-  let currentPage = 1;
 
   return createElement("div", { className: "post-list" }, [
     createElement("header", { className: "header_post-list" }, [
@@ -22,45 +17,38 @@ function PostListPage(props: PostListProps) {
         type: "text",
         id: "searchInput",
         placeholder: "Type something to search...",
-        onchange: (event: Event) => {
-          const tar = (event.target as HTMLInputElement).value;
+        value: state.getState().searchQuery,
+        oninput: (event: Event) => {
+          const val = (event.target as HTMLInputElement).value;
           state.setState({
-            posts: posts.filter(
-              (item) =>
-                item.author.name.includes(tar.toLowerCase()) ||
-                item.title.includes(tar.toLowerCase()) ||
-                item.body.includes(tar.toLowerCase())
-            ),
+            searchQuery: val,
           });
         },
       }),
     ]),
-    PostList({ posts, loading }),
-    createElement("div", { className: "pagination" }, [
-      createElement("button", {
-        className: "prevPage",
-        onclick: () => {
-          if (currentPage !== 1) {
-            currentPage - 1;
-          }
-        },
-      }),
-      createElement(
-        "div",
-        { className: "posts-pages" },
-        arrOfNumsPage.map((page) =>
-          createElement("span", { className: "page" }, [page.toString()])
-        )
+    PostList({
+      posts: paginate(
+        posts.filter(
+          (post) =>
+            post.author.name
+              .toLowerCase()
+              .includes(state.getState().searchQuery.toLowerCase()) ||
+            post.title.toLowerCase().includes(state.getState().searchQuery) ||
+            post.body.toLowerCase().includes(state.getState().searchQuery)
+        ),
+        state.getState().limit,
+        state.getState().currentPage
       ),
-      createElement("button", {
-        className: "nextPage",
-        onclick: () => {
-          if (currentPage !== pageCount) {
-            currentPage + 1;
-          }
-        },
-      }),
-    ]),
+      loading,
+    }),
+    Pagination({
+      totalCount: posts.length,
+      perPage: state.getState().limit,
+      currentPage: state.getState().currentPage,
+      onPageChange: (currentPage) => {
+        state.setState({ currentPage: currentPage });
+      },
+    }),
   ]);
 }
 

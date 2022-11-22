@@ -31,7 +31,7 @@ header {
 }
 
 .pagination {
-  width: 400px;
+  width: 500px;
   display: flex;
   justify-content: space-between;
   margin: 30px auto;
@@ -56,11 +56,26 @@ header {
 }
 
 .posts-pages {
-  width: 250px;
+  width: 350px;
   padding: 0 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 46px;
   background: #feffff;
+}
+
+.page {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.active {
+  background: #3a72f5;
+  box-shadow: 0px 0px 10px rgba(58, 114, 245, 0.2);
+  border-radius: 6px;
+  color: #feffff;
 }

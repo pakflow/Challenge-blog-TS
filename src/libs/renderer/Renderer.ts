@@ -12,11 +12,11 @@ class Renderer {
       [vDom]
     );
     this.sync(vDomRoot, realDomRoot);
+    console.log(vDomRoot);
   }
 
   sync(vDom: vNodeTagElement, realDom: HTMLElement) {
-    // debugger;
-    for (const [key, value] of Object.entries(realDom)) {
+    for (const [key, value] of Object.entries(vDom.attributes)) {
       (realDom as any)[key] = value;
     }
 
@@ -60,7 +60,7 @@ class Renderer {
         realNode !== undefined &&
         ((typeof vNode === "object" &&
           realNode instanceof HTMLElement &&
-          vNode.type !== realNode.tagName) ||
+          vNode.type.toLowerCase() !== realNode.tagName.toLowerCase()) ||
           (typeof vNode === "string" && realNode instanceof HTMLElement) ||
           (typeof vNode === "object" && realNode instanceof Text))
       ) {

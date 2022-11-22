@@ -1,16 +1,23 @@
 import "./SinglePostPage.css";
 import { PostItemProps } from "../../components/PostItem/PostItem";
 import { createElement } from "../../libs/renderer/utils/createElement";
+import { state } from "../../state";
+import { router } from "../..";
 
 function SinglePostPage(props: PostItemProps) {
   const { post } = props;
+  const indexOfPost = state
+    .getState()
+    .posts.findIndex((statePost) => statePost.id === post.id);
+  const statePosts = state.getState().posts;
+
   return createElement("div", { className: "single-post" }, [
     createElement(
       "button",
       {
         className: "btn-back",
         onclick: () => {
-          history.back();
+          history.replaceState(null, "", "/");
         },
       },
       ["back to posts"]
@@ -24,8 +31,30 @@ function SinglePostPage(props: PostItemProps) {
     ]),
     createElement("div", { className: "single-post_body" }, [post.body]),
     createElement("div", { className: "single-post_pagination" }, [
-      createElement("button", { className: "btnSinglePost back" }, ["back"]),
-      createElement("button", { className: "btnSinglePost next" }, ["next"]),
+      statePosts[indexOfPost - 1] !== undefined
+        ? createElement(
+            "button",
+            {
+              className: "btnSinglePost back",
+              onclick: () => {
+                router.locateTo(`/posts/${statePosts[indexOfPost - 1].id}`);
+              },
+            },
+            [statePosts[indexOfPost - 1].title.substring(0, 35).concat("...")]
+          )
+        : undefined,
+      statePosts[indexOfPost + 1] !== undefined
+        ? createElement(
+            "button",
+            {
+              className: "btnSinglePost next",
+              onclick: () => {
+                router.locateTo(`/posts/${statePosts[indexOfPost + 1].id}`);
+              },
+            },
+            [statePosts[indexOfPost + 1].title.substring(0, 35).concat("...")]
+          )
+        : undefined,
     ]),
     createElement("h2", { className: "hdr_comments" }, ["comments"]),
     createElement(

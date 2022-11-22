@@ -3,7 +3,6 @@ import "./style.css";
 import { Renderer } from "./libs/renderer/Renderer";
 import { loadPosts } from "./state/actions";
 import { state } from "./state";
-import { PostItem } from "./components/PostItem/PostItem";
 import { BrowserRouter } from "./router/BrowserRouter";
 import { Router } from "./router/components/Router";
 import { PostListPage } from "./pages/PostListPage/PostListPage";

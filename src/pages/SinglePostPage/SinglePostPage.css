@@ -65,14 +65,18 @@
   border: none;
   color: #aeaeae;
   text-transform: uppercase;
+  cursor: pointer;
+  font-size: 10px;
 }
 
 .back {
+  margin-right: auto;
   background: url(../../assets/icons/prevpage.svg) no-repeat scroll 16px 13px;
   background-color: #feffff;
 }
 
 .next {
+  margin-left: auto;
   background: url(../../assets/icons/nextpage.svg) no-repeat scroll 276px 13px;
   background-color: #feffff;
 }

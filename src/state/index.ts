@@ -11,12 +11,16 @@ interface IState {
   posts: FullPost[];
   searchQuery: string;
   postsLoading: boolean;
+  limit: number;
+  currentPage: number;
 }
 
 const state = new Store<IState>({
   posts: [],
   postsLoading: false,
   searchQuery: "",
+  limit: 10,
+  currentPage: 1,
 });
 
 export { state };
