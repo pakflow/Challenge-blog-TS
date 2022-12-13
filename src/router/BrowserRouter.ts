@@ -4,6 +4,10 @@ class BrowserRouter {
 
   constructor(initialUrl: string) {
     this.url = initialUrl;
+    window.addEventListener("popstate", () => {
+      this.url = window.location.pathname;
+      this.notifySubscribers();
+    });
   }
 
   locateTo(url: string) {
