@@ -1,19 +1,15 @@
 .post-item {
   width: 624px;
   height: 155px;
+  margin: 30px auto;
   border: 0.3px solid rgb(255, 255, 255);
   border-radius: 5px;
-  margin: 30px auto;
   font-size: 12px;
   background: url(../../assets/icons/book.svg) no-repeat scroll 16px 15px;
   background-color: #feffff;
 }
 
-.post-item > p {
-  padding: 0 96px 0 44px;
-}
-
-.post-item > a {
+.btnToSinglePost {
   padding-left: 44px;
   color: #3456cb;
   text-decoration-line: underline;
@@ -22,15 +18,18 @@
 
 .post-author {
   margin: 12px 0;
+  padding: 0 96px 0 44px;
   font-size: 10px;
   opacity: 0.5;
 }
 
 .post-title {
+  padding: 0 96px 0 44px;
   text-transform: uppercase;
 }
 
 .post-body {
+  padding: 0 96px 0 44px;
   height: 50px;
   margin: 9px 0;
 }

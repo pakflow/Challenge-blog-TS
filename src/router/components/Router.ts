@@ -1,19 +1,17 @@
 import { vNodeTagElement } from "../../libs/renderer/utils/createElement";
 import { BrowserRouter } from "../BrowserRouter";
 
-type Route = {
+interface Route {
   path: RegExp;
   element: (params: string[]) => vNodeTagElement;
-};
+}
 
-type RouterProps = {
+interface RouterProps {
   router: BrowserRouter;
   routes: Route[];
-};
+}
 
-function Router(props: RouterProps) {
-  const { router, routes } = props;
-
+function Router({ router, routes }: RouterProps) {
   for (let i = 0; i < routes.length; i++) {
     const route = routes[i];
     const params = router.match(route.path);

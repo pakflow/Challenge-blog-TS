@@ -24,6 +24,9 @@ module.exports = {
     ],
   },
   resolve: {
+    alias: {
+      "@libs": path.resolve(__dirname, "src/libs"),
+    },
     extensions: [".ts", ".js", ".html"],
   },
   devtool: "inline-source-map",

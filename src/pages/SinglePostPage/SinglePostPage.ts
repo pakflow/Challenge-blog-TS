@@ -1,11 +1,11 @@
-import "./SinglePostPage.css";
 import { PostItemProps } from "../../components/PostItem/PostItem";
 import { createElement } from "../../libs/renderer/utils/createElement";
 import { state } from "../../state";
 import { router } from "../..";
 
-function SinglePostPage(props: PostItemProps) {
-  const { post } = props;
+import "./SinglePostPage.css";
+
+function SinglePostPage({ post }: PostItemProps) {
   const indexOfPost = state
     .getState()
     .posts.findIndex((statePost) => statePost.id === post.id);

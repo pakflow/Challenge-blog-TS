@@ -1,4 +1,4 @@
-header {
+.header_post-list {
   font-weight: 590;
   font-size: 40px;
   line-height: 48px;
@@ -15,7 +15,7 @@ header {
   justify-content: center;
 }
 
-#searchInput {
+.searchInput {
   width: 624px;
   height: 42px;
   padding-left: 50px;
@@ -56,10 +56,10 @@ header {
 }
 
 .posts-pages {
-  width: 350px;
+  width: 335px;
   padding: 0 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   border-radius: 46px;
   background: #feffff;

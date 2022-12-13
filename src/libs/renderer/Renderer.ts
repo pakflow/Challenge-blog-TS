@@ -1,24 +1,24 @@
 import { createElement, vNodeTagElement } from "./utils/createElement";
-
 import { createDomElement } from "./utils/createDomElement";
 
 class Renderer {
   render(vDom: vNodeTagElement, realDomRoot: HTMLElement) {
-    // 1. создать новый vDomRoot element
-    // 2. вызвать синк передва этот новый блбла и реалрут
+    // 1. create new vDomRoot element
+    // 2. call sync
     const vDomRoot = createElement(
       realDomRoot.tagName,
       { id: realDomRoot.id },
       [vDom]
     );
     this.sync(vDomRoot, realDomRoot);
-    console.log(vDomRoot);
   }
 
   sync(vDom: vNodeTagElement, realDom: HTMLElement) {
     for (const [key, value] of Object.entries(vDom.attributes)) {
       (realDom as any)[key] = value;
     }
+
+    const nodesForDelete = [];
 
     for (
       let i = 0;
@@ -29,17 +29,14 @@ class Renderer {
       const realNode = realDom.childNodes[i];
       // Append
       if (vNode !== undefined && realNode === undefined) {
-        // createDomElement()
-        // realDom.append(newEealNode)
         const newDomEl = createDomElement(vNode);
         realDom.append(newDomEl);
         if (typeof vNode === "object" && newDomEl instanceof HTMLElement) {
           this.sync(vNode, newDomEl);
         }
       }
-      // Update
 
-      // вНода есть И реалНода есть И ((вНода это объект И реалНода это ХТМЛЕЭлемент И вНода тег РАВНО рНода тег) ИЛИ (вНода это Строка и рНода это ТекстНода))
+      // Update
       if (
         (vNode !== undefined &&
           realNode !== undefined &&
@@ -54,6 +51,7 @@ class Renderer {
           realNode.textContent = vNode;
         }
       }
+
       // Replace
       if (
         vNode !== undefined &&
@@ -77,16 +75,18 @@ class Renderer {
         } else if (typeof vNode === "object" && realNode instanceof Text) {
           const newDomEl = createDomElement(vNode) as HTMLElement;
           this.sync(vNode, newDomEl);
-          // realNode.replaceChild(newDomEl, realNode);
           realNode.remove();
           realDom.append(newDomEl);
         }
       }
+
       // Remove
       if (vNode === undefined && realNode !== undefined) {
-        realNode.remove();
+        nodesForDelete.push(realNode);
       }
     }
+
+    nodesForDelete.forEach((node) => node.remove());
   }
 }
 

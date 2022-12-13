@@ -14,6 +14,11 @@
 .header_single-post {
   width: 786px;
   margin: 25px auto;
+  font-weight: 590;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+  color: #535253;
 }
 
 .author-block {

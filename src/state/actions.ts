@@ -9,15 +9,15 @@ const loadPosts = async () => {
   const comments = await PostService.getCommentList();
   const fullPosts: FullPost[] = [];
 
-  for (let i = 0; i < posts.length; i++) {
-    const post = posts[i];
-    const postAuthor = authors.find((item) => item.id === post.userId);
+  posts.forEach((item) => {
+    const post = item;
+    const postAuthor = authors.find((author) => author.id === post.userId);
     const postComments = comments.filter(
       (comment) => comment.postId === post.id
     );
     const fullPost = { ...post, author: postAuthor, comments: postComments };
     fullPosts.push(fullPost);
-  }
+  });
 
   state.setState({ postsLoading: false, posts: fullPosts });
 };

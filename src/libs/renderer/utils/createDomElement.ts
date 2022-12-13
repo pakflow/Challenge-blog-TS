@@ -1,6 +1,6 @@
 import { vNode } from "./createElement";
 
-export function createDomElement(vNode: vNode): HTMLElement | Text {
+function createDomElement(vNode: vNode): HTMLElement | Text {
   if (typeof vNode === "object") {
     const el = document.createElement(vNode.type);
     Object.entries(vNode.attributes).forEach(([key, value]) => {
@@ -13,3 +13,5 @@ export function createDomElement(vNode: vNode): HTMLElement | Text {
   }
   return null;
 }
+
+export { createDomElement };

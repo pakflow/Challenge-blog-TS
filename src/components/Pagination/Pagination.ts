@@ -1,4 +1,4 @@
-import { createElement } from "../../libs/renderer/utils/createElement";
+import { createElement } from "@libs/renderer/utils/createElement";
 
 interface PaginationProps {
   totalCount: number;
@@ -7,8 +7,12 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-function Pagination(props: PaginationProps) {
-  const { totalCount, perPage, currentPage, onPageChange } = props;
+function Pagination({
+  totalCount,
+  perPage,
+  currentPage,
+  onPageChange,
+}: PaginationProps) {
   const pagesCount = Math.ceil(totalCount / perPage);
   const arrPagesCount = new Array(pagesCount);
 

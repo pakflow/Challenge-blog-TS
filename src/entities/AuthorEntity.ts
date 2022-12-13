@@ -1,4 +1,4 @@
-type AuthorEntity = {
+interface AuthorEntity {
   id: number;
   name: string;
   username: string;
@@ -7,6 +7,6 @@ type AuthorEntity = {
   phone: string;
   website: string;
   company: Record<string, string>;
-};
+}
 
 export { AuthorEntity };

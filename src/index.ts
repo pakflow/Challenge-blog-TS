@@ -1,5 +1,3 @@
-import "./style.css";
-
 import { Renderer } from "./libs/renderer/Renderer";
 import { loadPosts } from "./state/actions";
 import { state } from "./state";
@@ -8,7 +6,8 @@ import { Router } from "./router/components/Router";
 import { PostListPage } from "./pages/PostListPage/PostListPage";
 import { SinglePostPage } from "./pages/SinglePostPage/SinglePostPage";
 
-// Render
+import "./style.css";
+
 const dom = new Renderer();
 const root = document.getElementById("app");
 export const router = new BrowserRouter(location.pathname);
@@ -44,5 +43,4 @@ function render() {
 state.subscribe(render);
 router.subscribe(render);
 
-// Load data
 loadPosts();
