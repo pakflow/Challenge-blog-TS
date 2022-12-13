@@ -3,15 +3,10 @@
 # dependencies
 /dist
 /node_modules
-/.pnp
-.pnp.js
 
 #build
 /build
 /dist
-
-# testing
-/coverage
 
 # misc
 .DS_Store
