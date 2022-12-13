@@ -1,7 +1,7 @@
-import { PostItem } from "../PostItem/PostItem";
-import { createElement } from "../../libs/renderer/utils/createElement";
-import { FullPost } from "../../state";
-import { PostsLoading } from "../PostsLoading/PostsLoading";
+import { PostItem } from "@PostItem/PostItem";
+import { createElement } from "@utils/createElement";
+import { FullPost } from "@state/index";
+import { PostsLoading } from "@PostsLoading/PostsLoading";
 
 export interface PostListProps {
   posts: FullPost[];

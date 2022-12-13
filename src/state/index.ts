@@ -1,7 +1,7 @@
-import { AuthorEntity } from "../entities/AuthorEntity";
-import { CommentEntity } from "../entities/CommentEntity";
-import { PostEntity } from "../entities/PostEntity";
-import { Store } from "../libs/store/Store";
+import { AuthorEntity } from "@entities/AuthorEntity";
+import { CommentEntity } from "@entities/CommentEntity";
+import { PostEntity } from "@entities/PostEntity";
+import { Store } from "@store/Store";
 
 export type FullPost = PostEntity & {
   author: AuthorEntity;

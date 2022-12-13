@@ -2,8 +2,47 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@libs": [
-                "./src/libs"
+            "@utils/*": [
+                "./src/libs/renderer/utils/*"
+            ],
+            "@state/*": [
+                "./src/state/*"
+            ],
+            "@browserRouter/*": [
+                "./src/index.ts"
+            ],
+            "@PostItem/*": [
+                "./src/components/PostItem/*"
+            ],
+            "@PostsLoading/*": [
+                "./src/components/PostsLoading/*"
+            ],
+            "@PostList/*": [
+                "./src/components/PostList/*"
+            ],
+            "@Pagination/*": [
+                "./src/components/Pagination/*"
+            ],
+            "@postService/*": [
+                "./src/services/postService/*"
+            ],
+            "@entities/*": [
+                "./src/entities/*"
+            ],
+            "@requester/*": [
+                "./src/libs/requester/*"
+            ],
+            "@store/*": [
+                "./src/libs/store/*"
+            ],
+            "@router/*": [
+                "./src/router/*"
+            ],
+            "@renderer/*": [
+                "./src/libs/renderer/*"
+            ],
+            "@pages/*": [
+                "./src/pages/*"
             ]
         }
     }

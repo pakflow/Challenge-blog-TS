@@ -1,6 +1,6 @@
-import { createElement, vNodeTagElement } from "./utils/createElement";
+import { createElement, vNodeTagElement } from "@utils/createElement";
 
-import { createDomElement } from "./utils/createDomElement";
+import { createDomElement } from "@utils/createDomElement";
 
 class Renderer {
   render(vDom: vNodeTagElement, realDomRoot: HTMLElement) {
@@ -15,8 +15,9 @@ class Renderer {
   }
 
   sync(vDom: vNodeTagElement, realDom: HTMLElement) {
-    while (realDom.attributes.length > 0)
+    while (realDom.attributes.length > 0) {
       realDom.removeAttribute(realDom.attributes[0].name);
+    }
 
     for (const [key, value] of Object.entries(vDom.attributes)) {
       (realDom as any)[key] = value;

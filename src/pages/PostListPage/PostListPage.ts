@@ -1,8 +1,8 @@
-import { PostList, PostListProps } from "../../components/PostList/PostList";
-import { createElement } from "../../libs/renderer/utils/createElement";
-import { state } from "../../state";
-import { paginate } from "../../libs/renderer/utils/paginate";
-import { Pagination } from "../../components/Pagination/Pagination";
+import { PostList, PostListProps } from "@PostList/PostList";
+import { createElement } from "@utils/createElement";
+import { state } from "@state/index";
+import { paginate } from "@utils/paginate";
+import { Pagination } from "@Pagination/Pagination";
 
 import "./PostListPage.css";
 

@@ -1,6 +1,6 @@
-import { createElement } from "../../libs/renderer/utils/createElement";
-import { FullPost } from "../../state";
-import { router } from "../..";
+import { createElement } from "@utils/createElement";
+import { FullPost } from "@state/index";
+import { router } from "@browserRouter/";
 
 import "./PostItem.css";
 

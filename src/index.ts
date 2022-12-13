@@ -1,10 +1,10 @@
-import { Renderer } from "./libs/renderer/Renderer";
-import { loadPosts } from "./state/actions";
-import { state } from "./state";
-import { BrowserRouter } from "./router/BrowserRouter";
-import { Router } from "./router/components/Router";
-import { PostListPage } from "./pages/PostListPage/PostListPage";
-import { SinglePostPage } from "./pages/SinglePostPage/SinglePostPage";
+import { Renderer } from "@renderer/Renderer";
+import { loadPosts } from "@state/actions";
+import { state } from "@state/index";
+import { BrowserRouter } from "@router/BrowserRouter";
+import { Router } from "@router/components/Router";
+import { PostListPage } from "@pages/PostListPage/PostListPage";
+import { SinglePostPage } from "@pages/SinglePostPage/SinglePostPage";
 
 import "./style.css";
 

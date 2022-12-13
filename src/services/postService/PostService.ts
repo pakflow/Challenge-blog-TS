@@ -1,7 +1,7 @@
-import { AuthorEntity } from "../../entities/AuthorEntity";
-import { CommentEntity } from "../../entities/CommentEntity";
-import { PostEntity } from "../../entities/PostEntity";
-import { Requester } from "../../libs/requester/Requester";
+import { AuthorEntity } from "@entities/AuthorEntity";
+import { CommentEntity } from "@entities/CommentEntity";
+import { PostEntity } from "@entities/PostEntity";
+import { Requester } from "@requester/Requester";
 
 class PostService {
   private static requester = new Requester();

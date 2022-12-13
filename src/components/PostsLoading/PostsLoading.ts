@@ -1,4 +1,4 @@
-import { createElement } from "../../libs/renderer/utils/createElement";
+import { createElement } from "@utils/createElement";
 
 import "./PostsLoading.css";
 

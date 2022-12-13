@@ -8,10 +8,6 @@
     "sourceMap": true,
     "allowJs": true,
     "moduleResolution": "node",
-    "paths": {
-      "@components/*": ["./src/components/*"],
-      "@libs/*": ["./src/libs/*"]
-    }
   },
-  "extends": "./tsconfig.paths.json"
+  "extends": "./tsconfig.paths.json",
 }

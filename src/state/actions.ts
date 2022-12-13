@@ -1,4 +1,4 @@
-import { PostService } from "../services/postService/PostService";
+import { PostService } from "@postService/PostService";
 import { FullPost, state } from ".";
 
 const loadPosts = async () => {

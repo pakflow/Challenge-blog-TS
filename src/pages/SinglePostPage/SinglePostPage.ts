@@ -1,7 +1,7 @@
-import { PostItemProps } from "../../components/PostItem/PostItem";
-import { createElement } from "../../libs/renderer/utils/createElement";
-import { state } from "../../state";
-import { router } from "../..";
+import { PostItemProps } from "@PostItem/PostItem";
+import { createElement } from "@utils/createElement";
+import { state } from "@state/index";
+import { router } from "@browserRouter/";
 
 import "./SinglePostPage.css";
 
@@ -17,7 +17,7 @@ function SinglePostPage({ post }: PostItemProps) {
       {
         className: "btn-back",
         onclick: () => {
-          history.replaceState(null, "", "/");
+          router.locateTo("/");
         },
       },
       ["back to posts"]
