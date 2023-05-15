@@ -1,7 +1,7 @@
 # Challenge Blog TS    
 <br/>
   
-🔥**Created my own SPA with own renderer, router and state manager**    
+🔥**Developed my own SPA with own renderer, router and state manager**    
 <br/>
   
 🙌 [Challenge Blog TS](https://pakflow.github.io) 
